@@ -12,15 +12,10 @@ def import_distance():
         for row in reader:
             id = row['city']
             del row['city']
-            #print(">>>>>" + id)
             distance_dict = {}
             for key, value in row.items() :
-                #print (key, value)
                 distance_dict[key] = value
             city = City(1, str(id), x=None, y=None, distance_dict=distance_dict)
-            # print(city.get_id())
-            # print(city.get_distance_dict())
-            # print(city.get_distance('Bristol'))
             distance_salesman.addCity(city)
 
     return distance_salesman
@@ -38,13 +33,22 @@ def import_point():
 
 salesman = Salesman()
 
-salesman = import_point()
+while True:
+    decision = input("Which data points do you want to use (Type [P] for point data or [D] distance data)?")
+    if decision.upper() not in ('P', 'D'):
+        print("Not an appropriate choice.")
+    else:
+        if decision.upper() == 'P':
+            salesman = import_point()
+        else:
+            salesman = import_distance()
+        break
 
- # Initialize population
+ # Initialize the population
 pop = Population(salesman, 300, True);
 print(f'Initial distance: {str(pop.getFittest().get_distance())}')
 
-# Evolve population for 50 generations
+# Evolve the population
 print("Population evolving...Getting the fittest result...")
 ga = GA(salesman)
 pop = ga.evolvePopulation(pop)
