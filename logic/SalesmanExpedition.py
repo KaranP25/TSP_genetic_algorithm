@@ -10,39 +10,30 @@ class SalesmanExpedition:
       if tour is not None:
          self.tour = tour
       else:
-         for i in range(0, self.Salesman.numberOfCities()):
+         for i in range(0, self.Salesman.num_of_cities()):
             self.tour.append(None)
    
-   """ def __len__(self):
-      return len(self.tour)
-   
-   def __getitem__(self, index):
-      return self.tour[index]
-   
-   def __setitem__(self, key, value):
-      self.tour[key] = value """
-   
    def __repr__(self):
-      geneString = ""
+      string = ""
       for i in range(0, self.tour_size()):
-        geneString += " ["
-        geneString += str(self.get_city(i))
+        string += " ["
+        string += str(self.get_city(i))
         if(i==self.tour_size()-1):
-            geneString += "]"
+            string += "]"
         else:
-            geneString += "] ->"
-      return geneString
+            string += "] ->"
+      return string
    
    def generate_individual(self):
-      for cityIndex in range(0, self.Salesman.numberOfCities()):
-         self.set_city(cityIndex, self.Salesman.get_city(cityIndex))
+      for city_index in range(0, self.Salesman.num_of_cities()):
+         self.set_city(city_index, self.Salesman.get_city(city_index))
       random.shuffle(self.tour)
    
-   def get_city(self, tourPosition):
-      return self.tour[tourPosition]
+   def get_city(self, tour_pos):
+      return self.tour[tour_pos]
    
-   def set_city(self, tourPosition, city):
-      self.tour[tourPosition] = city
+   def set_city(self, tour_pos, city):
+      self.tour[tour_pos] = city
       self.fitness = 0.0
       self.distance = 0
    
@@ -53,16 +44,16 @@ class SalesmanExpedition:
    
    def get_distance(self):
       if self.distance == 0:
-         tourDistance = 0
-         for cityIndex in range(0, self.tour_size()):
-            fromCity = self.get_city(cityIndex)
+         tour_distance = 0
+         for city_index in range(0, self.tour_size()):
+            from_city = self.get_city(city_index)
             destination_city = None
-            if cityIndex+1 < self.tour_size():
-               destination_city = self.get_city(cityIndex+1)
+            if city_index+1 < self.tour_size():
+               destination_city = self.get_city(city_index+1)
             else:
                destination_city = self.get_city(0)
-            tourDistance += fromCity.get_distance(destination_city)
-         self.distance = tourDistance
+            tour_distance += from_city.get_distance(destination_city)
+         self.distance = tour_distance
       return self.distance
    
    def tour_size(self):

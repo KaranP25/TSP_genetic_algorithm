@@ -1,35 +1,35 @@
 from logic.SalesmanExpedition import SalesmanExpedition
 
 class Population:
-   def __init__(self, Salesman, populationSize, initialise):
+   def __init__(self, Salesman, size_population, is_initialise):
       self.tours = []
-      for i in range(0, populationSize):
+      for i in range(0, size_population):
          self.tours.append(None)
       
-      if initialise:
-         for i in range(0, populationSize):
-            newTour = SalesmanExpedition(Salesman)
-            newTour.generate_individual()
-            self.saveTour(i, newTour)
+      if is_initialise:
+         for i in range(0, size_population):
+            new_tour = SalesmanExpedition(Salesman)
+            new_tour.generate_individual()
+            self.save_tour(i, new_tour)
       
-   def __setitem__(self, key, value):
+   """ def __setitem__(self, key, value):
       self.tours[key] = value
    
    def __getitem__(self, index):
-      return self.tours[index]
+      return self.tours[index] """
    
-   def saveTour(self, index, tour):
+   def save_tour(self, index, tour):
       self.tours[index] = tour
    
-   def getTour(self, index):
+   def get_tour(self, index):
       return self.tours[index]
    
-   def getFittest(self):
+   def get_fittest(self):
       fittest = self.tours[0]
-      for i in range(0, self.getPopulationSize()):
-         if fittest.get_fitness() <= self.getTour(i).get_fitness():
-            fittest = self.getTour(i)
+      for i in range(0, self.get_population_size()):
+         if fittest.get_fitness() <= self.get_tour(i).get_fitness():
+            fittest = self.get_tour(i)
       return fittest
    
-   def getPopulationSize(self):
+   def get_population_size(self):
       return len(self.tours)

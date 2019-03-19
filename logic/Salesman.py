@@ -1,11 +1,11 @@
 class Salesman:
-   destinationCities = []
+   dest_cities = []
    
-   def addCity(self, city):
-      self.destinationCities.append(city)
+   def add_city(self, city):
+      self.dest_cities.append(city)
    
    def get_city(self, index):
-      return self.destinationCities[index]
+      return self.dest_cities[index]
    
-   def numberOfCities(self):
-      return len(self.destinationCities)
+   def num_of_cities(self):
+      return len(self.dest_cities)
