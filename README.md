@@ -1,1 +1,1 @@
-# TSP_genetic_algorithm
+# TravellingSalesmanProblem_genetic_algorithm
