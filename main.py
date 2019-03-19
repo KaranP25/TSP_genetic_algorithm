@@ -4,16 +4,44 @@ from logic.Salesman import Salesman
 from logic.Population import Population
 from logic.GA import GA
 
+def import_distance():
+    distance_salesman = Salesman()
+
+    with open('data/cities_distance.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            id = row['city']
+            del row['city']
+            #print(">>>>>" + id)
+            distance_dict = {}
+            for key, value in row.items() :
+                #print (key, value)
+                distance_dict[key] = value
+            city = City(1, str(id), x=None, y=None, distance_dict=distance_dict)
+            # print(city.get_id())
+            # print(city.get_distance_dict())
+            # print(city.get_distance('Bristol'))
+            distance_salesman.addCity(city)
+
+    return distance_salesman
+
+def import_point():
+    point_salesman = Salesman()
+
+    with open('data/points.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            point = City(0, row['id'], int(row['x']), int(row['y']))
+            point_salesman.addCity(point)
+
+    return point_salesman
+
 salesman = Salesman()
 
-with open('data/points.csv', newline='') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        point = City(row['id'], int(row['x']), int(row['y']))
-        salesman.addCity(point)
+salesman = import_point()
 
  # Initialize population
-pop = Population(salesman, 100, True);
+pop = Population(salesman, 300, True);
 print(f'Initial distance: {str(pop.getFittest().get_distance())}')
 
 # Evolve population for 50 generations
