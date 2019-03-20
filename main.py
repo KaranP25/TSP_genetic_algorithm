@@ -53,20 +53,20 @@ def main():
     mutation_method = 0
     # user prompt
     while True:
-        decision = input("\nWhich mutation and crossover method? \n(Type [1] for one-point crossover and swap mutation or \n[2] for one-point crossover and scramble mutation \n[3] for two-point crossover and swap mutation) \n[4] for two-point crossover and scamble mutation)?")
-        if decision.upper() not in ('1', '2', '3', '4'):
+        decision_type = input("\nWhich mutation and crossover method? \n(Type [1] for one-point crossover and swap mutation or \n[2] for one-point crossover and scramble mutation \n[3] for two-point crossover and swap mutation) \n[4] for two-point crossover and scamble mutation)?")
+        if decision_type.upper() not in ('1', '2', '3', '4'):
             print("Not an appropriate choice.")
         else:
-            if decision == '1':
+            if decision_type == '1':
                 crossover_method = 0
                 mutation_method = 0
-            elif decision == '2':
+            elif decision_type == '2':
                 crossover_method = 0
                 mutation_method = 1
-            elif decision == '3':
+            elif decision_type == '3':
                 crossover_method = 1
                 mutation_method = 0
-            elif decision == '4':
+            elif decision_type == '4':
                 crossover_method = 1
                 mutation_method = 1
             break
@@ -99,7 +99,7 @@ def main():
                 fittest_x = [city.get_x() for city in pop.get_fittest().get_tour()]
                 fittest_y = [city.get_y() for city in pop.get_fittest().get_tour()]
 
-                fittest_plot = Plot(fittest_id, fittest_x, fittest_y)
+                fittest_plot = Plot(decision.upper(), fittest_id, fittest_x, fittest_y)
                 fittest_plot.plot()
             else:
                 pass

@@ -3,12 +3,12 @@ from logic.City import City
 from logic.SalesmanExpedition import SalesmanExpedition
 
 class Plot:
-    def __init__(self, names_list, cordlist_x, cordlist_y):
+    def __init__(self, domain_type, names_list, cordlist_x, cordlist_y):
         self.names_list = names_list
         self.cordlist_x = cordlist_x
         self.cordlist_y = cordlist_y
-        
-    
+        self.domain_type = domain_type
+
     def plot(self):
         plt.xlabel('X-Axis')
         plt.ylabel('Y-Axis')
@@ -21,5 +21,8 @@ class Plot:
         plt.plot(self.cordlist_x[-1], self.cordlist_y[-1], 'r', label='End City')
         plt.legend(loc="best")
 
-        plt.savefig("output.png", bbox_inches="tight")
+        if(self.domain_type == 'D'):
+            plt.savefig("output_distance.png", bbox_inches="tight")
+        else:
+            plt.savefig("output_point.png", bbox_inches="tight")
         plt.show()
