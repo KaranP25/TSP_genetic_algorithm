@@ -49,13 +49,35 @@ def main():
                 salesman = import_distance()
             break
 
+    crossover_method = 0
+    mutation_method = 0
+    # user prompt
+    while True:
+        decision = input("\nWhich mutation and crossover method? \n(Type [1] for one-point crossover and swap mutation or \n[2] for one-point crossover and scramble mutation \n[3] for two-point crossover and swap mutation) \n[4] for two-point crossover and scamble mutation)?")
+        if decision.upper() not in ('1', '2', '3', '4'):
+            print("Not an appropriate choice.")
+        else:
+            if decision == '1':
+                crossover_method = 0
+                mutation_method = 0
+            elif decision == '2':
+                crossover_method = 0
+                mutation_method = 1
+            elif decision == '3':
+                crossover_method = 1
+                mutation_method = 0
+            elif decision == '4':
+                crossover_method = 1
+                mutation_method = 1
+            break
+
     # Initialize the population
     pop = Population(salesman, 300, True);
-    print(f'Initial distance: {str(pop.get_fittest().get_distance())}')
+    print(f'\nInitial distance: {str(pop.get_fittest().get_distance())}')
 
     # Evolve the population
     print("Population evolving...Getting the fittest result...")
-    ga = GeneticAlgorithm(salesman, 1, 1)
+    ga = GeneticAlgorithm(salesman, mutation_method, crossover_method)
     pop = ga.evolve(pop)
     for i in range(0, 100):
         pop = ga.evolve(pop)

@@ -65,11 +65,9 @@ class GeneticAlgorithm:
                      break
       return child
 
-   def crossover_one_point(self, parent1, parent2):
+   """ def crossover_one_point(self, parent1, parent2):
       child = SalesmanExpedition(self.Salesman)
-      
-
-      return child
+      return child """
    
    def mutate(self, tour):
       if self.mutation_method == 0:
