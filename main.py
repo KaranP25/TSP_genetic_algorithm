@@ -2,7 +2,7 @@ import csv
 from logic.City import City
 from logic.Salesman import Salesman
 from logic.Population import Population
-from logic.GA import GA
+from logic.GeneticAlgorithm import GeneticAlgorithm
 from plot import Plot
 
 # import and add the distance data
@@ -55,7 +55,7 @@ def main():
 
     # Evolve the population
     print("Population evolving...Getting the fittest result...")
-    ga = GA(salesman)
+    ga = GeneticAlgorithm(salesman, 1, 1)
     pop = ga.evolve(pop)
     for i in range(0, 100):
         pop = ga.evolve(pop)
