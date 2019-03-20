@@ -61,3 +61,6 @@ class SalesmanExpedition:
    
    def get_contained_city(self, city):
       return city in self.tour
+   
+   def get_tour(self):
+      return self.tour

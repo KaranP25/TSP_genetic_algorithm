@@ -12,6 +12,7 @@ class GA:
    def evolve(self, curr_pop):
       new_population = Population(self.Salesman, curr_pop.get_population_size(), False)
       elitismOffset = 0
+
       if self.elitism:
          new_population.save_tour(0, curr_pop.get_fittest())
          elitismOffset = 1
@@ -29,7 +30,6 @@ class GA:
    
    def crossover(self, parent1, parent2):
       child = SalesmanExpedition(self.Salesman)
-      
       start_pos = int(random.random() * parent1.tour_size())
       end_pos = int(random.random() * parent1.tour_size())
       
