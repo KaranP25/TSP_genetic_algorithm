@@ -79,7 +79,8 @@ def main():
     print("Population evolving...Getting the fittest result...")
     ga = GeneticAlgorithm(salesman, mutation_method, crossover_method)
     pop = ga.evolve(pop)
-    for i in range(0, 100):
+    termination_condition = 100
+    for i in range(0, termination_condition):
         pop = ga.evolve(pop)
     
     # Print final results
