@@ -4,6 +4,7 @@ from logic.Salesman import Salesman
 from logic.Population import Population
 from logic.GeneticAlgorithm import GeneticAlgorithm
 from plot import Plot
+import time 
 
 # import and add the distance data
 def import_distance():
@@ -75,6 +76,7 @@ def main():
     pop = Population(salesman, 300, True);
     print(f'\nInitial distance: {str(pop.get_fittest().get_distance())}')
 
+    t1 = time.monotonic()
     # Evolve the population
     print("Population evolving...Getting the fittest result...")
     ga = GeneticAlgorithm(salesman, mutation_method, crossover_method)
@@ -83,6 +85,8 @@ def main():
     for i in range(0, termination_condition):
         pop = ga.evolve(pop)
     
+    t2 = time.monotonic()
+    print("TIME TAKEN: ", t2-t1)
     # Print final results
     print("Evolving Population Complete\n")
     print(f'Minimum distance: {str(pop.get_fittest().get_distance())}')
